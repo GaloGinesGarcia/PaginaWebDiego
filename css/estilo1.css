@@ -42,6 +42,7 @@ nav ul {
     gap: 30px;               /* espacio entre enlaces */
     padding: 0;
     margin: 0;
+    margin-bottom: 8px;
 }
 
 nav li {
@@ -77,18 +78,23 @@ main {
     border-radius: 8px;
     border: 2px solid transparent; /* borde inicial */
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: 
+        transform 0.3s, 
+        box-shadow 0.5s ease-in-out,  /* transición gradual para LED */
+        border-color 0.5s ease-in-out; 
     cursor: pointer;
     position: relative;
     overflow: hidden;
 }
 
-/* hover: escalado y sombra */
+/* hover: escalado + LED encendido */
 .cuadro:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    border-color: white; /* borde LED */
-    animation: ledGlow 1s infinite alternate;
+    border-color: white; 
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.3), 
+        0 0 25px white, 
+        0 0 50px rgba(255,255,255,0.8); /* LED encendido */
 }
 
 /* animación LED progresivo */
@@ -106,9 +112,10 @@ main {
 
 /* FOOTER */
 footer {
-    background-color: whitesmoke;
+    background-color: grey;
     text-align: center;
     padding: 20px 0;
+    color: white;
 }
 
 /* FUENTE PERSONALIZADA */
