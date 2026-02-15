@@ -1,11 +1,11 @@
-/* BODY */
+/* ================= BODY ================= */
 body {
     background-color: black;
     margin: 0;
     font-family: sans-serif;
 }
 
-/* HEADER FIJO CON MARGEN SUPERIOR */
+/* ================= HEADER FIJO ================= */
 header {
     position: fixed;
     top: 0; /* margen desde la parte superior del navegador */
@@ -19,14 +19,14 @@ header {
     background-color: black;
 }
 
-/* CONTENEDOR INTERNO DEL HEADER */
+/* Contenedor interno del header */
 header > div {
     width: 80%;          /* ancho máximo central */
     max-width: 1200px;   /* opcional para pantallas grandes */
     text-align: center;  /* centra h1 y nav dentro del div */
 }
 
-/* H1 */
+/* ================= H1 ================= */
 header h1 {
     color: whitesmoke;
     font-family: 'FuenteTitulo', sans-serif;
@@ -34,7 +34,7 @@ header h1 {
     margin-bottom: 10px; /* espacio entre título y nav */
 }
 
-/* NAV */
+/* ================= NAV ================= */
 nav ul {
     list-style: none;
     display: flex;
@@ -45,23 +45,28 @@ nav ul {
     margin-bottom: 8px;
 }
 
-nav li {
-    color: whitesmoke;
-    cursor: pointer;
+/* Enlaces dentro del nav */
+header nav ul li a {
+    color: whitesmoke;       /* texto blanco */
+    text-decoration: none;   /* quita subrayado */
+    cursor: pointer;         /* muestra mano */
     font-weight: 500;
     transition: color 0.3s;
+    font-size: 1.1rem;       /* tamaño legible */
 }
 
-nav li:hover {
-    color: grey; 
+/* Hover de los enlaces */
+header nav ul li a:hover {
+    color: grey;             /* cambia a gris al pasar el ratón */
 }
 
-
+/* ================= MAIN ================= */
 main {
     margin-top: 160px; 
     text-align: center;
 }
 
+/* ================= GALERÍA DE CUADROS ================= */
 .galeria {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columnas */
@@ -80,7 +85,7 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: 
         transform 0.3s, 
-        box-shadow 0.5s ease-in-out,  /* transición gradual para LED */
+        box-shadow 0.5s ease-in-out,  
         border-color 0.5s ease-in-out; 
     cursor: pointer;
     position: relative;
@@ -97,20 +102,7 @@ main {
         0 0 50px rgba(255,255,255,0.8); /* LED encendido */
 }
 
-/* animación LED progresivo */
-@keyframes ledGlow {
-    0% {
-        box-shadow: 0 0 5px white, 0 0 10px rgba(255,255,255,0.5);
-    }
-    50% {
-        box-shadow: 0 0 15px white, 0 0 30px rgba(255,255,255,0.7);
-    }
-    100% {
-        box-shadow: 0 0 25px white, 0 0 50px rgba(255,255,255,1);
-    }
-}
-
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer {
     background-color: grey;
     text-align: center;
@@ -118,7 +110,7 @@ footer {
     color: white;
 }
 
-/* FUENTE PERSONALIZADA */
+/* ================= FUENTE PERSONALIZADA ================= */
 @font-face {
     font-family: 'FuenteTitulo';
     src: url('../asserts/fonts/ginebra_font.ttf') format('truetype');
@@ -126,7 +118,7 @@ footer {
     font-style: normal;
 }
 
-/* --- MEDIA QUERIES PARA RESPONSIVE --- */
+/* ================= MEDIA QUERIES PARA RESPONSIVE ================= */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem; /* reduce tamaño en tablet/móvil */
@@ -136,7 +128,7 @@ footer {
         gap: 1rem;
     }
 
-    nav li {
+    header nav ul li a {
         font-size: 1rem;
     }
 
@@ -153,6 +145,10 @@ footer {
     nav ul {
         flex-direction: column; /* links verticales en móvil */
         gap: 0.5rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
     }
 
     main {
