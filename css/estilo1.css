@@ -66,6 +66,12 @@ main {
     text-align: center;
 }
 
+p{
+    text-align: center;
+    color: white;
+    margin: 15%;
+}
+
 /* ================= GALERÍA DE CUADROS ================= */
 .galeria {
     display: grid;

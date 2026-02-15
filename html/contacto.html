@@ -29,8 +29,48 @@
         </div>
     </header>
     <main>
-    
-    </main>
+    <section class="container my-5">
+        <h2 class="text-center mb-4 text-white">Contacto</h2>
+        <h6 class="text-center mb-4 text-white">Correo profesional: tucorreo@gmail.com</h6>
+        
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <!-- Formulario de contacto -->
+                <form id="contactForm" class="bg-dark p-4 rounded text-white">
+                    
+                    <!-- Correo del usuario -->
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">Tu correo</label>
+                        <input type="email" class="form-control" id="userEmail" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+
+                    <!-- Mensaje del usuario -->
+                    <div class="mb-3">
+                        <label for="userMessage" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="userMessage" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+
+                    <!-- Botón de iniciar sesión con Google (simulado) -->
+                    <div class="mb-3 text-center">
+                        <button type="button" class="btn btn-danger w-100 mb-3" id="googleLogin">
+                            <i class="bi bi-google"></i> Iniciar sesión con Google
+                        </button>
+                    </div>
+
+                    <!-- Botón enviar -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    
+                    <p class="mt-3 text-center" id="formStatus"></p>
+                </form>
+
+            </div>
+        </div>
+    </section>
+</main>
     <footer>
         <div class="container">
             <p class="mb-0">© 2026 Mi Web. Todos los derechos reservados.</p>

@@ -15,4 +15,4 @@ qr.make(fit = True)
 img = qr.make_image(fill_color = "black", back_color = "white")
 
 img.save("codigoQrDiego.png")
-print("codigo generado y cuardado con exito.")
+print("codigo generado y guardado con exito.")
