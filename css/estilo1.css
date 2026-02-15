@@ -1,0 +1,154 @@
+/* BODY */
+body {
+    background-color: black;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* HEADER FIJO CON MARGEN SUPERIOR */
+header {
+    position: fixed;
+    top: 0; /* margen desde la parte superior del navegador */
+    left: 0;
+    width: 100%;
+    height: auto; /* altura automática según contenido */
+    z-index: 1000;
+    display: flex;
+    justify-content: center; /* centra el contenido horizontal */
+    align-items: center;     /* centra vertical */
+    background-color: black;
+}
+
+/* CONTENEDOR INTERNO DEL HEADER */
+header > div {
+    width: 80%;          /* ancho máximo central */
+    max-width: 1200px;   /* opcional para pantallas grandes */
+    text-align: center;  /* centra h1 y nav dentro del div */
+}
+
+/* H1 */
+header h1 {
+    color: whitesmoke;
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px; /* espacio entre título y nav */
+}
+
+/* NAV */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* centra horizontalmente los li */
+    gap: 30px;               /* espacio entre enlaces */
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    color: whitesmoke;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav li:hover {
+    color: grey; 
+}
+
+
+main {
+    margin-top: 160px; 
+    text-align: center;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 20px;  /* espacio entre cuadrados */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 50px auto; /* centrado y margen inferior */
+    padding: 20px 0;
+}
+
+.cuadro {
+    background-color: sandybrown;
+    aspect-ratio: 1 / 1; 
+    border-radius: 8px;
+    border: 2px solid transparent; /* borde inicial */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* hover: escalado y sombra */
+.cuadro:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border-color: white; /* borde LED */
+    animation: ledGlow 1s infinite alternate;
+}
+
+/* animación LED progresivo */
+@keyframes ledGlow {
+    0% {
+        box-shadow: 0 0 5px white, 0 0 10px rgba(255,255,255,0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px white, 0 0 30px rgba(255,255,255,0.7);
+    }
+    100% {
+        box-shadow: 0 0 25px white, 0 0 50px rgba(255,255,255,1);
+    }
+}
+
+/* FOOTER */
+footer {
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* FUENTE PERSONALIZADA */
+@font-face {
+    font-family: 'FuenteTitulo';
+    src: url('../asserts/fonts/ginebra_font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVE --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* reduce tamaño en tablet/móvil */
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav li {
+        font-size: 1rem;
+    }
+
+    main {
+        margin-top: 180px; /* ajusta espacio según header reducido */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* móvil pequeño */
+    }
+
+    nav ul {
+        flex-direction: column; /* links verticales en móvil */
+        gap: 0.5rem;
+    }
+
+    main {
+        margin-top: 250px; /* más espacio si nav ocupa varias líneas */
+    }
+}
