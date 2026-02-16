@@ -1,7 +1,7 @@
 import qrcode
 
 
-url = "www.google.com"
+url = "https://galoginesgarcia.github.io/PaginaWebDiego/"
 
 qr = qrcode.QRCode(
     version = 1,
