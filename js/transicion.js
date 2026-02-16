@@ -30,6 +30,66 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, cameFromInternalNav ? quickEntryTime : cinematicEntryTime);
 
+    const mobileDropdown = document.querySelector(".mobile-dropdown");
+    if (mobileDropdown instanceof HTMLElement) {
+        const summary = mobileDropdown.querySelector("summary");
+        const closeMobileMenu = () => {
+            mobileDropdown.removeAttribute("open");
+            document.body.classList.remove("mobile-menu-open");
+            if (summary) {
+                summary.setAttribute("aria-expanded", "false");
+            }
+        };
+
+        const syncMobileMenuState = () => {
+            const isOpen = mobileDropdown.hasAttribute("open");
+            document.body.classList.toggle("mobile-menu-open", isOpen);
+            if (summary) {
+                summary.setAttribute("aria-expanded", String(isOpen));
+            }
+        };
+
+        syncMobileMenuState();
+        mobileDropdown.addEventListener("toggle", syncMobileMenuState);
+
+        mobileDropdown.addEventListener("click", (event) => {
+            const targetElement = event.target;
+            if (!(targetElement instanceof Element)) {
+                return;
+            }
+
+            if (targetElement.closest(".mobile-dropdown__backdrop")) {
+                closeMobileMenu();
+                return;
+            }
+
+            if (targetElement.closest(".mobile-dropdown__panel a")) {
+                closeMobileMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && mobileDropdown.hasAttribute("open")) {
+                closeMobileMenu();
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!mobileDropdown.hasAttribute("open")) {
+                return;
+            }
+
+            const targetElement = event.target;
+            if (!(targetElement instanceof Element)) {
+                return;
+            }
+
+            if (!targetElement.closest(".mobile-dropdown")) {
+                closeMobileMenu();
+            }
+        });
+    }
+
     const handleNavigation = (event) => {
         const targetElement = event.target;
         if (!(targetElement instanceof Element)) {
