@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.innerHTML = `
         <div class="loader-stage">
             <div class="loader-spinner"></div>
-            <div class="loader-title">Diego DJ</div>
+            <div class="loader-title">ZIGO DJ</div>
         </div>
     `;
     overlay.classList.toggle("quick", cameFromInternalNav);
