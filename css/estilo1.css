@@ -130,6 +130,10 @@ footer {
     color: white;
 }
 
+footer p {
+    margin: 0;
+}
+
 /* ================= FUENTE PERSONALIZADA ================= */
 @font-face {
     font-family: 'FuenteTitulo';
@@ -405,5 +409,3 @@ footer {
         margin-top: 200px; /* espacio ajustado con menú hamburguesa */
     }
 }
-
-
