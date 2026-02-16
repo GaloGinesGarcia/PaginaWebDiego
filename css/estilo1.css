@@ -278,6 +278,18 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .galeria {
+        display: flex;
+        flex-direction: column;
+        width: 96%;
+        max-width: 560px;
+        gap: 18px;
+        padding: 16px 0;
+    }
+
+    .cuadro {
+        width: 100%;
+    }
     header h1 {
         font-size: 1.8rem; /* móvil pequeño */
     }
@@ -393,3 +405,5 @@ footer {
         margin-top: 200px; /* espacio ajustado con menú hamburguesa */
     }
 }
+
+
