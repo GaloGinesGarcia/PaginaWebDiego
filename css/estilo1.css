@@ -29,6 +29,7 @@ header > div {
     width: 80%;          /* ancho máximo central */
     max-width: 1200px;   /* opcional para pantallas grandes */
     text-align: center;  /* centra h1 y nav dentro del div */
+    position: relative;
 }
 
 /* ================= H1 ================= */
@@ -63,6 +64,10 @@ header nav ul li a {
 /* Hover de los enlaces */
 header nav ul li a:hover {
     color: grey;             /* cambia a gris al pasar el ratón */
+}
+
+.mobile-dropdown {
+    display: none;
 }
 
 /* ================= MAIN ================= */
@@ -252,7 +257,7 @@ footer {
 /* ================= MEDIA QUERIES PARA RESPONSIVE ================= */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2rem; /* reduce tamaño en tablet/móvil */
+        font-size: 2.15rem; /* reduce tamaño en tablet/móvil */
     }
 
     nav ul {
@@ -270,19 +275,71 @@ footer {
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.5rem; /* móvil pequeño */
+        font-size: 1.8rem; /* móvil pequeño */
     }
 
-    nav ul {
-        flex-direction: column; /* links verticales en móvil */
-        gap: 0.5rem;
+    header nav {
+        display: none;
     }
 
-    header nav ul li a {
-        font-size: 0.9rem;
+    .mobile-dropdown {
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        z-index: 1100;
+        text-align: left;
+    }
+
+    .mobile-dropdown summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 8px 6px;
+    }
+
+    .mobile-dropdown summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-dropdown summary span {
+        display: block;
+        width: 24px;
+        height: 2.5px;
+        margin: 4px 0;
+        border-radius: 99px;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+    }
+
+    .mobile-dropdown ul {
+        list-style: none;
+        margin: 8px 0 0 0;
+        padding: 8px;
+        min-width: 135px;
+        border-radius: 8px;
+        background: rgba(15, 15, 15, 0.97);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .mobile-dropdown li + li {
+        margin-top: 6px;
+    }
+
+    .mobile-dropdown a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: block;
+        padding: 4px 6px;
+        border-radius: 5px;
+    }
+
+    .mobile-dropdown a:hover {
+        background: rgba(255, 255, 255, 0.12);
     }
 
     main {
-        margin-top: 250px; /* más espacio si nav ocupa varias líneas */
+        margin-top: 200px; /* espacio ajustado con menú hamburguesa */
     }
 }
