@@ -4,11 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const quickEntryTime = 120;
     const exitTime = 700;
     const transitionFlag = "internal-page-transition";
-    const cameFromInternalNav = sessionStorage.getItem(transitionFlag) === "1";
     let isLeaving = false;
+    let cameFromInternalNav = false;
 
-    if (cameFromInternalNav) {
-        sessionStorage.removeItem(transitionFlag);
+    try {
+        cameFromInternalNav = sessionStorage.getItem(transitionFlag) === "1";
+        if (cameFromInternalNav) {
+            sessionStorage.removeItem(transitionFlag);
+        }
+    } catch {
+        cameFromInternalNav = false;
     }
 
     if (!overlay) {
@@ -58,7 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
             isLeaving = true;
-            sessionStorage.setItem(transitionFlag, "1");
+            try {
+                sessionStorage.setItem(transitionFlag, "1");
+            } catch {
+                // If storage is blocked, fallback is full intro on next page.
+            }
             overlay.classList.add("quick");
             overlay.classList.remove("hidden");
 
@@ -67,4 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }, exitTime);
         });
     });
+});
+
+window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) {
+        return;
+    }
+
+    const overlay = document.getElementById("transition-overlay");
+    if (overlay) {
+        overlay.classList.add("hidden");
+    }
 });
