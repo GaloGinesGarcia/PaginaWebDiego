@@ -1,4 +1,4 @@
-const RECIPIENT_EMAIL = "galogines1@gmail.com";
+const RECIPIENT_EMAIL = "lory03333@gmail.com";
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
 
 const form = document.getElementById("contactForm");
