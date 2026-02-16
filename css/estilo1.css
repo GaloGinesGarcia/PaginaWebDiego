@@ -138,6 +138,19 @@ footer p {
     margin: 0;
 }
 
+.social-icon {
+    height: auto;
+    vertical-align: middle;
+}
+
+.instagram-icon {
+    width: 20%;
+}
+
+.soundcloud-icon {
+    width: 10%;
+}
+
 /* ================= FUENTE PERSONALIZADA ================= */
 @font-face {
     font-family: 'FuenteTitulo';
@@ -286,6 +299,14 @@ footer p {
 }
 
 @media (max-width: 480px) {
+    .instagram-icon {
+        width: 30%;
+    }
+
+    .soundcloud-icon {
+        width: 18%;
+    }
+
     .galeria {
         display: flex;
         flex-direction: column;
