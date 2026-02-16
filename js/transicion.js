@@ -1,19 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("transition-overlay");
     const cinematicEntryTime = 1300;
-    const quickEntryTime = 120;
+    const quickEntryTime = 220;
     const exitTime = 700;
-    const transitionFlag = "internal-page-transition";
     let isLeaving = false;
-    let cameFromInternalNav = false;
+    const url = new URL(window.location.href);
+    const cameFromInternalNav = url.searchParams.get("_tr") === "1";
 
-    try {
-        cameFromInternalNav = sessionStorage.getItem(transitionFlag) === "1";
-        if (cameFromInternalNav) {
-            sessionStorage.removeItem(transitionFlag);
-        }
-    } catch {
-        cameFromInternalNav = false;
+    if (cameFromInternalNav) {
+        url.searchParams.delete("_tr");
+        window.history.replaceState({}, "", url.toString());
     }
 
     if (!overlay) {
@@ -34,48 +30,53 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, cameFromInternalNav ? quickEntryTime : cinematicEntryTime);
 
-    const links = document.querySelectorAll("a[href]");
+    const handleNavigation = (event) => {
+        const targetElement = event.target;
+        if (!(targetElement instanceof Element)) {
+            return;
+        }
 
-    links.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            if (isLeaving) {
-                event.preventDefault();
-                return;
-            }
+        const link = targetElement.closest("a[href]");
+        if (!link) {
+            return;
+        }
 
-            const href = link.getAttribute("href");
-            const target = link.getAttribute("target");
-            const hasDownload = link.hasAttribute("download");
-
-            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
-                return;
-            }
-
-            if (target === "_blank" || hasDownload) {
-                return;
-            }
-
-            const nextUrl = new URL(href, window.location.href);
-
-            if (nextUrl.origin !== window.location.origin) {
-                return;
-            }
-
+        if (isLeaving) {
             event.preventDefault();
-            isLeaving = true;
-            try {
-                sessionStorage.setItem(transitionFlag, "1");
-            } catch {
-                // If storage is blocked, fallback is full intro on next page.
-            }
-            overlay.classList.add("quick");
-            overlay.classList.remove("hidden");
+            return;
+        }
 
-            setTimeout(() => {
-                window.location.href = nextUrl.href;
-            }, exitTime);
-        });
-    });
+        const href = link.getAttribute("href");
+        const target = link.getAttribute("target");
+        const hasDownload = link.hasAttribute("download");
+
+        if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+            return;
+        }
+
+        if (target === "_blank" || hasDownload) {
+            return;
+        }
+
+        const nextUrl = new URL(href, window.location.href);
+
+        if (nextUrl.origin !== window.location.origin) {
+            return;
+        }
+
+        event.preventDefault();
+        isLeaving = true;
+        nextUrl.searchParams.set("_tr", "1");
+        overlay.classList.add("quick");
+        overlay.classList.remove("hidden");
+
+        setTimeout(() => {
+            window.location.href = nextUrl.href;
+        }, exitTime);
+    };
+
+    document.addEventListener("click", handleNavigation);
+    document.addEventListener("touchend", handleNavigation, { passive: false });
 });
 
 window.addEventListener("pageshow", (event) => {
