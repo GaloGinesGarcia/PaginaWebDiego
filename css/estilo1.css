@@ -339,7 +339,7 @@ footer p {
         z-index: 2100;
         text-align: left;
         position: absolute;
-        top: 50%;
+        top: calc(50% - 4px);
         right: 12px;
         transform: translateY(-50%);
     }
