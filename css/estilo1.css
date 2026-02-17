@@ -306,6 +306,11 @@ footer p {
 }
 
 @media (max-width: 480px) {
+    header > div {
+        width: 100%;
+        max-width: none;
+    }
+
     .instagram-icon {
         width: 42%;
     }
