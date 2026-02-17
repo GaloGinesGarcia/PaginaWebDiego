@@ -332,7 +332,11 @@ footer p {
         width: 100%;
     }
     header h1 {
-        font-size: 2.2rem; /* móvil pequeño */
+        font-size: 1.8rem;
+        margin: 0;
+        padding-right: 44px;
+        white-space: nowrap;
+        line-height: 1.1;
     }
 
     header nav {
@@ -450,3 +454,4 @@ footer p {
         margin-top: 200px; /* espacio ajustado con menú hamburguesa */
     }
 }
+
