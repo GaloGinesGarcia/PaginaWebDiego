@@ -436,6 +436,15 @@ footer p {
         transform: translateX(0);
     }
 
+    .mobile-dropdown.closing .mobile-dropdown__backdrop {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .mobile-dropdown.closing .mobile-dropdown__panel {
+        transform: translateX(100%);
+    }
+
     .mobile-dropdown__panel li + li {
         margin-top: 4px;
     }
@@ -458,4 +467,3 @@ footer p {
         margin-top: 200px; /* espacio ajustado con menú hamburguesa */
     }
 }
-

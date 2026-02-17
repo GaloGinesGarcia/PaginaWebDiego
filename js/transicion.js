@@ -33,12 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileDropdown = document.querySelector(".mobile-dropdown");
     if (mobileDropdown instanceof HTMLElement) {
         const summary = mobileDropdown.querySelector("summary");
+        const mobileMenuCloseTime = 280;
+        let closeMenuTimer;
+
         const closeMobileMenu = () => {
-            mobileDropdown.removeAttribute("open");
+            if (!mobileDropdown.hasAttribute("open") || mobileDropdown.classList.contains("closing")) {
+                return;
+            }
+
+            mobileDropdown.classList.add("closing");
             document.body.classList.remove("mobile-menu-open");
             if (summary) {
                 summary.setAttribute("aria-expanded", "false");
             }
+
+            window.clearTimeout(closeMenuTimer);
+            closeMenuTimer = window.setTimeout(() => {
+                mobileDropdown.removeAttribute("open");
+                mobileDropdown.classList.remove("closing");
+            }, mobileMenuCloseTime);
         };
 
         const syncMobileMenuState = () => {
@@ -51,6 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         syncMobileMenuState();
         mobileDropdown.addEventListener("toggle", syncMobileMenuState);
+
+        if (summary) {
+            summary.addEventListener("click", (event) => {
+                if (!mobileDropdown.hasAttribute("open")) {
+                    return;
+                }
+
+                event.preventDefault();
+                closeMobileMenu();
+            });
+        }
 
         mobileDropdown.addEventListener("click", (event) => {
             const targetElement = event.target;
