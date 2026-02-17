@@ -26,6 +26,7 @@ header {
     justify-content: center; 
     align-items: center;     
     background-color: black;
+    padding-bottom: 8px;
 }
 
 /* Contenedor interno del header */
@@ -34,6 +35,7 @@ header > div {
     max-width: 1200px;   /* opcional para pantallas grandes */
     text-align: center;  /* centra h1 y nav dentro del div */
     position: relative;
+    padding-bottom: 4px;
 }
 
 /* ================= H1 ================= */
