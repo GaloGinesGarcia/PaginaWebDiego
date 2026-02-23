@@ -13,7 +13,7 @@ form.addEventListener("submit", function (e) {
 
     const templateParams = {
         from_email: document.getElementById("userEmail").value,
-        reply_to: document.getElementById("userEmail").value,
+        title: "Quiero contactar contigo.",
         message: document.getElementById("userMessage").value,
     };
 
